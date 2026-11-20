@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="theme-color" content="#171b2b"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="format-detection" content="telephone=no">
+<title>iMod Studio · Stardew Save Lab</title>
+<style>
+:root{--bg:#101522;--panel:#1a2334;--panel2:#222e43;--line:#34445c;--text:#f4f0e8;--muted:#a9b4c5;--gold:#f2c66d;--mint:#8bd6b0;--pink:#e9a5bc;--blue:#91b9ef}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 15% -5%,#34405b 0,transparent 38%),linear-gradient(180deg,#111827,#0c1220 70%);color:var(--text);font:15px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;min-height:100vh}
+header{padding:22px 18px 14px;position:sticky;top:0;z-index:5;background:#111827ed;backdrop-filter:blur(18px);border-bottom:1px solid #34445c}
+.brand{display:flex;align-items:center;gap:12px}.logo{width:46px;height:46px;border-radius:15px;background:linear-gradient(145deg,#f3d58b,#d58b65);display:grid;place-items:center;font-size:25px;box-shadow:0 7px 20px #0005}.brand h1{font-size:21px;margin:0;letter-spacing:.2px}.brand p{margin:3px 0 0;color:var(--muted);font-size:12px}.status{margin-left:auto;font-size:11px;color:var(--mint);border:1px solid #467d69;padding:6px 9px;border-radius:20px}
+main{max-width:850px;margin:auto;padding:16px 14px 100px}.hero{background:linear-gradient(125deg,#33445c,#26374c 52%,#5b4351);border:1px solid #637087;border-radius:24px;padding:20px;position:relative;overflow:hidden}.hero:after{content:"🌱";position:absolute;font-size:110px;right:7px;bottom:-25px;opacity:.14}.eyebrow{font-size:11px;text-transform:uppercase;letter-spacing:1.8px;color:#f4d99d}.hero h2{font-size:25px;line-height:1.15;margin:8px 0}.hero p{color:#d1d9e4;max-width:500px;font-size:13px;line-height:1.5;margin:0}.filebar{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:16px}.filebtn{border:1px solid #77869a;background:#ffffff13;color:white;border-radius:14px;padding:12px 10px;text-align:left;font-weight:650;font-size:12px}.filebtn span{display:block;color:#c3d1df;font-size:10px;font-weight:400;margin-top:4px}.filebtn input{display:none}.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin:14px 0}.metric{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:12px}.metric small{color:var(--muted);font-size:10px}.metric strong{display:block;font-size:18px;margin-top:5px;color:var(--gold);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tabs{display:flex;gap:7px;overflow:auto;padding:4px 0 13px;scrollbar-width:none}.tab{border:1px solid var(--line);background:#1a2334;color:var(--muted);padding:10px 14px;border-radius:13px;white-space:nowrap;font-weight:650;font-size:12px}.tab.active{background:#e6bd72;color:#283044;border-color:#e6bd72}
+.section{display:none}.section.active{display:block}.sectionhead{display:flex;align-items:end;justify-content:space-between;margin:8px 2px 13px}.sectionhead h3{font-size:19px;margin:0}.sectionhead p{margin:4px 0 0;color:var(--muted);font-size:11px}.search{width:100%;padding:13px 14px;background:#1a2334;border:1px solid var(--line);border-radius:13px;color:white;font-size:14px;outline:none;margin-bottom:12px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.npc,.itemcard{background:linear-gradient(160deg,#202c40,#172132);border:1px solid #35455d;border-radius:17px;padding:11px;min-width:0}.npcTop{display:flex;align-items:center;gap:10px}.portrait{width:58px;height:58px;border-radius:13px;background:#34445b;object-fit:contain;image-rendering:pixelated;border:1px solid #58667a}.npcName{font-weight:750;font-size:13px}.npcType{color:var(--muted);font-size:10px;margin-top:3px}.hearts{color:#f1a6bd;font-size:14px;letter-spacing:1px;margin:9px 0 5px;white-space:nowrap;overflow:hidden}.range{width:100%;accent-color:#e9a5bc}.heartrow{display:flex;justify-content:space-between;color:var(--muted);font-size:10px}.statusselect,.field{background:#101827;color:white;border:1px solid #43536a;border-radius:10px;padding:8px;width:100%;font-size:12px;margin-top:8px}
+.itemvisual{height:76px;display:grid;place-items:center;background:radial-gradient(circle,#394a5e,#202b3c 70%);border-radius:12px;margin-bottom:9px;overflow:hidden}.itemvisual img{width:58px;height:58px;object-fit:contain;image-rendering:pixelated}.itememoji{font-size:39px;filter:drop-shadow(0 5px 5px #0006)}.itemname{font-size:12px;font-weight:750}.itemmeta{font-size:10px;color:var(--muted);margin:4px 0 7px}.addrow{display:grid;grid-template-columns:1fr 1fr;gap:6px}.addrow button,.primary,.secondary{border:0;border-radius:10px;padding:10px;font-weight:750;font-size:11px}.addrow button{background:#d7b36f;color:#252d3c}.addrow select{background:#101827;color:white;border:1px solid #46566b;border-radius:9px;padding:8px;font-size:11px}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:15px;margin-bottom:12px}.panel h4{margin:0 0 12px;font-size:14px}.rowfield{display:grid;grid-template-columns:1fr auto;align-items:center;gap:10px;margin:10px 0}.rowfield label{font-size:12px;color:var(--muted)}.rowfield input{width:125px;background:#101827;color:white;border:1px solid #43536a;border-radius:10px;padding:10px;font-size:13px}.primary{background:linear-gradient(135deg,#f1ce83,#dcae65);color:#202b3c;padding:14px 18px;font-size:13px;width:100%}.secondary{background:#2b3a50;color:#e7edf5;width:100%;padding:12px}.notice{font-size:11px;line-height:1.5;color:var(--muted);background:#131d2b;border:1px solid #34445c;padding:11px;border-radius:12px;margin-top:10px}.inventoryrow{display:grid;grid-template-columns:40px 1fr auto;gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid #34445c}.inventoryrow:last-child{border:0}.miniicon{width:38px;height:38px;border-radius:10px;background:#34445c;display:grid;place-items:center;font-size:22px}.inventoryrow strong{font-size:12px}.inventoryrow small{display:block;color:var(--muted);font-size:10px;margin-top:3px}.inventoryrow button{background:#35465e;border:0;color:white;border-radius:8px;padding:8px;font-size:10px}
+.bottom{position:fixed;bottom:0;left:0;right:0;padding:10px 14px calc(10px + env(safe-area-inset-bottom));background:#101522ee;backdrop-filter:blur(18px);border-top:1px solid #34445c;z-index:6}.bottomin{max-width:850px;margin:auto;display:grid;grid-template-columns:1fr 1fr;gap:9px}.bottom .primary,.bottom .secondary{padding:13px}.hidden{display:none!important}.empty{color:var(--muted);text-align:center;padding:28px 10px;font-size:12px}
+@media(min-width:650px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}.hero{padding:26px}.hero h2{font-size:30px}}
+</style></head>
+<body>
+<header><div class="brand"><div class="logo">🌻</div><div><h1>iMod Studio</h1><p>STARDEW VALLEY · SAVE LAB</p></div><div class="status" id="topStatus">DOSYA BEKLİYOR</div></div></header>
+<main>
+<div class="hero"><div class="eyebrow">YOUR FARM · YOUR RULES</div><h2>Kaydını kendi<br>kurallarınla düzenle.</h2><p>Karakter ilişkilerini ayarla, eşya kataloğundan envanterini oluştur ve değişikliklerini iki kayıt dosyasıyla güvenle dışa aktar.</p>
+<div class="filebar">
+<label class="filebtn">📂 Ana kayıt dosyasını seç<span id="mainLabel">Yalın_453502399</span><input id="mainFile" type="file" accept=".xml,*/*"></label>
+<label class="filebtn">📄 SaveGameInfo seç<span id="infoLabel">SaveGameInfo</span><input id="infoFile" type="file" accept=".xml,*/*"></label>
+</div></div>
+<div class="metrics"><div class="metric"><small>OYUNCU</small><strong id="playerMetric">—</strong></div><div class="metric"><small>ALTIN</small><strong id="goldMetric">—</strong></div><div class="metric"><small>ENVANTER</small><strong id="invMetric">—</strong></div></div>
+<nav class="tabs">
+<button class="tab active" data-tab="people">💗 Karakterler</button><button class="tab" data-tab="catalog">🎒 Eşya kataloğu</button><button class="tab" data-tab="inventory">🧺 Envanterim</button><button class="tab" data-tab="player">✨ Çiftlik</button>
+</nav>
+<section class="section active" id="people">
+<div class="sectionhead"><div><h3>Kasaba halkı</h3><p>Tanışmadığın karakterler de dahil · Kalpleri sen belirle</p></div><small id="npcCount" style="color:var(--muted)">35 kişi</small></div>
+<input class="search" id="npcSearch" placeholder="Karakter ara…">
+<div class="grid" id="npcGrid"></div>
+</section>
+<section class="section" id="catalog">
+<div class="sectionhead"><div><h3>Eşya kataloğu</h3><p>Seç, kalite ve adet belirle, envanterine ekle</p></div><small style="color:var(--muted)">1.6 · temel katalog</small></div>
+<input class="search" id="itemSearch" placeholder="Eşya ara…">
+<div class="grid" id="itemGrid"></div>
+<div class="notice">Katalog şu an temel, yaygın ve güvenli Object kayıtlarını içeriyor. Oyundaki tüm 1.6.15 öğelerini kapsayan tam veri tabanı ve her öğenin gerçek sprite dosyaları sonraki veri paketiyle genişletilecek; burada olmayan bir eşyayı rastgele ID ile eklemiyoruz.</div>
+</section>
+<section class="section" id="inventory">
+<div class="sectionhead"><div><h3>Envanterim</h3><p>Mevcut eşyaların kalite ve adet ayarları</p></div></div>
+<div class="panel"><h4>Çantandaki eşyalar</h4><div id="inventoryList"><div class="empty">Önce iki kayıt dosyasını yükle.</div></div></div>
+</section>
+<section class="section" id="player">
+<div class="sectionhead"><div><h3>Çiftlik kontrolü</h3><p>Oyuncu değerleri ve kayıt durumu</p></div></div>
+<div class="panel"><h4>Oyuncu</h4><div class="rowfield"><label>Altın</label><input type="number" id="moneyInput" min="0" value="500"></div><div class="rowfield"><label>Sağlık</label><input type="number" id="healthInput" min="1" value="100"></div><div class="rowfield"><label>Enerji</label><input type="number" id="staminaInput" min="0" value="270"></div><div class="rowfield"><label>Qi Mücevheri</label><input type="number" id="qiInput" min="0" value="0"></div></div>
+<div class="panel"><h4>Kayıt güvenliği</h4><div id="fileStatus" class="notice">Ana kayıt ve SaveGameInfo dosyalarını yükle. Dışa aktarma ikisini aynı klasör yapısında paketler.</div><button class="secondary" id="validateBtn" style="margin-top:10px">Dosyaları doğrula</button></div>
+</section>
+</main>
+<div class="bottom"><div class="bottomin"><button class="secondary" id="resetBtn">↺ Değişiklikleri sıfırla</button><button class="primary" id="exportBtn">⬇ Güvenli ZIP dışa aktar</button></div></div>
+
+
+<script>
+/* Offline ZIP writer: no CDN, no external library, compatible with Safari. */
+function crc32(bytes){
+  let c=0xffffffff;
+  for(let i=0;i<bytes.length;i++){c^=bytes[i];for(let k=0;k<8;k++)c=(c>>>1)^((c&1)?0xedb88320:0);}
+  return (c^0xffffffff)>>>0;
+}
+function makeZip(files){
+  const enc=new TextEncoder(), locals=[], centrals=[]; let offset=0;
+  const dosTime=0, dosDate=((2026-1980)<<9)|(11<<5)|20;
+  for(const file of files){
+    const name=enc.encode(file.name), data=enc.encode(file.content), crc=crc32(data);
+    const local=new Uint8Array(30+name.length+data.length), lv=new DataView(local.buffer);
+    lv.setUint32(0,0x04034b50,true);lv.setUint16(4,20,true);lv.setUint16(6,0x0800,true);
+    lv.setUint16(8,0,true);lv.setUint16(10,dosTime,true);lv.setUint16(12,dosDate,true);
+    lv.setUint32(14,crc,true);lv.setUint32(18,data.length,true);lv.setUint32(22,data.length,true);
+    lv.setUint16(26,name.length,true);lv.setUint16(28,0,true);local.set(name,30);local.set(data,30+name.length);
+    locals.push(local);
+    const central=new Uint8Array(46+name.length), cv=new DataView(central.buffer);
+    cv.setUint32(0,0x02014b50,true);cv.setUint16(4,20,true);cv.setUint16(6,20,true);
+    cv.setUint16(8,0x0800,true);cv.setUint16(10,0,true);cv.setUint16(12,dosTime,true);cv.setUint16(14,dosDate,true);
+    cv.setUint32(16,crc,true);cv.setUint32(20,data.length,true);cv.setUint32(24,data.length,true);
+    cv.setUint16(28,name.length,true);cv.setUint16(30,0,true);cv.setUint16(32,0,true);
+    cv.setUint16(34,0,true);cv.setUint16(36,0,true);cv.setUint32(38,0,true);cv.setUint32(42,offset,true);
+    central.set(name,46);centrals.push(central);offset+=local.length;
+  }
+  const centralSize=centrals.reduce((n,x)=>n+x.length,0), end=new Uint8Array(22), ev=new DataView(end.buffer);
+  ev.setUint32(0,0x06054b50,true);ev.setUint16(4,0,true);ev.setUint16(6,0,true);
+  ev.setUint16(8,files.length,true);ev.setUint16(10,files.length,true);
+  ev.setUint32(12,centralSize,true);ev.setUint32(16,offset,true);ev.setUint16(20,0,true);
+  return new Blob([...locals,...centrals,end],{type:"application/zip"});
+}
+</script>
+
+<script>
+const NPCS=[
+["Abigail","Evlilik adayı","Abigail"],["Alex","Evlilik adayı","Alex"],["Caroline","Kasaba sakini","Caroline"],["Clint","Kasaba sakini","Clint"],["Demetrius","Kasaba sakini","Demetrius"],["Elliott","Evlilik adayı","Elliott"],["Emily","Evlilik adayı","Emily"],["Evelyn","Kasaba sakini","Evelyn"],["George","Kasaba sakini","George"],["Gus","Kasaba sakini","Gus"],["Haley","Evlilik adayı","Haley"],["Harvey","Evlilik adayı","Harvey"],["Jas","Kasaba sakini","Jas"],["Jodi","Kasaba sakini","Jodi"],["Kent","Kasaba sakini","Kent"],["Krobus","Özel karakter","Krobus"],["Leah","Evlilik adayı","Leah"],["Leo","Özel karakter","Leo"],["Lewis","Kasaba sakini","Lewis"],["Linus","Kasaba sakini","Linus"],["Marnie","Kasaba sakini","Marnie"],["Maru","Evlilik adayı","Maru"],["Pam","Kasaba sakini","Pam"],["Penny","Evlilik adayı","Penny"],["Pierre","Kasaba sakini","Pierre"],["Robin","Kasaba sakini","Robin"],["Sam","Evlilik adayı","Sam"],["Sandy","Özel karakter","Sandy"],["Sebastian","Evlilik adayı","Sebastian"],["Shane","Evlilik adayı","Shane"],["Vincent","Kasaba sakini","Vincent"],["Willy","Kasaba sakini","Willy"],["Wizard","Özel karakter","Wizard"],["Dwarf","Özel karakter","Dwarf"],["Mr. Qi","Özel karakter","Mr._Qi"]
+];
+const ITEMS=[
+["24","Yaban turpu","🥕",-75],["188","Yeşil fasulye","🫛",-75],["190","Karnabahar","🥦",-75],["192","Patates","🥔",-75],["250","Mısır","🌽",-75],["252","Buğday","🌾",-75],["258","Mavi yem","🫐",-75],["260","Acı biber","🌶️",-75],["266","Kırmızı lahana","🥬",-75],["270","Mısır","🌽",-75],["276","Kabak","🎃",-75],["280","Yeşil çay","🍵",-7],["284","Pancar","🫜",-75],["300","Amarant","🌿",-75],["340","Bal","🍯",-79],["348","Şarap","🍷",-79],["334","Bakır külçesi","🟠",-15],["335","Demir külçesi","🔩",-15],["336","Altın külçesi","🟡",-15],["337","İridyum külçesi","🟣",-15],["338","Rafine kuvars","💎",-15],["390","Taş","🪨",-2],["388","Odun","🪵",-2],["709","Sert odun","🪵",-2],["378","Bakır cevheri","🟤",-15],["380","Demir cevheri","⚙️",-15],["382","Kömür","⚫",-15],["72","Elmas","💎",-2],["64","Yakut","🔴",-2],["66","Ametist","🟣",-2],["68","Topaz","🟡",-2],["70","Yeşim","🟢",-2],["80","Kuvars","💠",-2],["74","Prizmatik parça","🌈",-2],["128","Kirpi balığı","🐡",-4],["129","Hamsi","🐟",-4],["130","Ton balığı","🐟",-4],["132","Büyük ağızlı levrek","🐟",-4],["136","Levrek","🐟",-4],["142","Sazan","🐟",-4],["145","Ay balığı","🐠",-4],["167","Somon","🐟",-4],["194","Kızarmış yumurta","🍳",-7],["216","Ekmek","🍞",-7],["220","Kurabiye","🍪",-7],["221","Çikolatalı kek","🍰",-7],["246","Baharatlı yılan balığı","🍲",-7],["773","Altın yumurta","🥚",-6],["434","Kahve","☕",-7],["436","Keçi peyniri","🧀",-7],["442","Ördek mayonezi","🥫",-7],["613","Elma","🍎",-79],["634","Kayısı","🍑",-79],["635","Portakal","🍊",-79],["636","Şeftali","🍑",-79],["637","Nar","🍈",-79],["638","Kiraz","🍒",-79],["421","Ayçiçeği","🌻",-75],["433","Kahve çekirdeği","🫘",-75],["724","Akçaağaç şurubu","🍯",-79]
+];
+let mainDoc=null,infoDoc=null,mainName="Yalın_453502399",infoName="SaveGameInfo",originalMain="",originalInfo="",dirty=false;
+const $=id=>document.getElementById(id);
+function parseXML(s){let d=new DOMParser().parseFromString(s,"application/xml");if(d.querySelector("parsererror"))throw Error("XML okunamadı");return d}
+function first(el,tag){return el?Array.from(el.children).find(x=>x.tagName===tag)||null:null}
+function text(el,tag){return first(el,tag)?.textContent??""}
+function setText(el,tag,val){let n=first(el,tag);if(n)n.textContent=String(val)}
+function player(){return mainDoc?.querySelector("SaveGame > player, player")}
+function playerName(){return text(player(),"name")||"Çiftçi"}
+function friendContainer(){return first(player(),"friendshipData")}
+function allFriendEntries(){return Array.from(friendContainer()?.children||[]).filter(x=>x.tagName==="item")}
+function entryName(e){return e.querySelector("key > string")?.textContent||""}
+function friendValue(e){return e?e.querySelector("value > Friendship"):null}
+function setFriend(n,hearts,status){let box=friendContainer();if(!box)return;let e=allFriendEntries().find(x=>entryName(x)===n);if(!e){e=mainDoc.createElement("item");let k=mainDoc.createElement("key"),ks=mainDoc.createElement("string");ks.textContent=n;k.append(ks);let v=mainDoc.createElement("value"),f=mainDoc.createElement("Friendship");for(let [tag,val] of [["Points",0],["GiftsThisWeek",0],["GiftsToday",0],["TalkedToToday","false"],["ProposalRejected","false"],["Status","Friendly"],["Proposer",0],["RoommateMarriage","false"]]){let x=mainDoc.createElement(tag);x.textContent=val;f.append(x)}v.append(f);e.append(k,v);box.append(e)}
+let f=friendValue(e);if(!f)return;setText(f,"Points",Math.round(hearts*250));setText(f,"Status",status)}
+function heartsFor(n){let e=allFriendEntries().find(x=>entryName(x)===n),f=friendValue(e);return Math.max(0,Math.min(14,(Number(text(f,"Points"))||0)/250))}
+function inventory(){let it=first(player(),"items");return it?Array.from(it.children).filter(x=>x.tagName==="Item"&&x.getAttribute("xsi:nil")!=="true"&&x.getAttribute("nil")!=="true"):[]}
+function itemName(x){return text(x,"name")||text(x,"itemId")||"Eşya"}
+function itemIcon(name){let i=ITEMS.find(x=>x[1]===name);return i?i[2]:"📦"}
+const SPRITES={"Yaban turpu":"Parsnip","Yeşil fasulye":"Green_Bean","Karnabahar":"Cauliflower","Patates":"Potato","Mısır":"Corn","Buğday":"Wheat","Acı biber":"Hot_Pepper","Kırmızı lahana":"Red_Cabbage","Kabak":"Pumpkin","Pancar":"Beet","Amarant":"Amaranth","Bal":"Honey","Şarap":"Wine","Bakır külçesi":"Copper_Bar","Demir külçesi":"Iron_Bar","Altın külçesi":"Gold_Bar","İridyum külçesi":"Iridium_Bar","Rafine kuvars":"Refined_Quartz","Taş":"Stone","Odun":"Wood","Sert odun":"Hardwood","Bakır cevheri":"Copper_Ore","Demir cevheri":"Iron_Ore","Kömür":"Coal","Elmas":"Diamond","Yakut":"Ruby","Ametist":"Amethyst","Topaz":"Topaz","Yeşim":"Jade","Kuvars":"Quartz","Prizmatik parça":"Prismatic_Shard","Kirpi balığı":"Pufferfish","Hamsi":"Anchovy","Ton balığı":"Tuna","Büyük ağızlı levrek":"Largemouth_Bass","Levrek":"Bream","Sazan":"Carp","Ay balığı":"Sunfish","Somon":"Salmon","Kızarmış yumurta":"Fried_Egg","Ekmek":"Bread","Kurabiye":"Cookie","Çikolatalı kek":"Chocolate_Cake","Baharatlı yılan balığı":"Spicy_Eel","Kahve":"Coffee","Keçi peyniri":"Goat_Cheese","Elma":"Apple","Kayısı":"Apricot","Portakal":"Orange","Şeftali":"Peach","Nar":"Pomegranate","Kiraz":"Cherry","Ayçiçeği":"Sunflower","Akçaağaç şurubu":"Maple_Syrup"};
+function updateMetrics(){if(!mainDoc)return;$("playerMetric").textContent=playerName();$("goldMetric").textContent=(text(player(),"money")||"0")+"g";$("invMetric").textContent=inventory().length+" eşya";$("moneyInput").value=text(player(),"money")||0;$("healthInput").value=text(player(),"maxHealth")||100;$("staminaInput").value=text(player(),"maxStamina")||270;$("qiInput").value=text(player(),"qiGems")||0;$("topStatus").textContent="KAYIT YÜKLENDİ";$("topStatus").style.color="var(--mint)"}
+function renderNPC(){let q=$("npcSearch").value.toLowerCase();$("npcGrid").innerHTML="";NPCS.filter(n=>n[0].toLowerCase().includes(q)).forEach(n=>{let h=heartsFor(n[0]),card=document.createElement("div");card.className="npc";let img=`https://stardewvalleywiki.com/Special:FilePath/${encodeURIComponent(n[2])}.png`;card.innerHTML=`<div class="npcTop"><img class="portrait" src="${img}" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'"><div class="portrait" style="display:none;place-items:center;font-size:26px">👤</div><div><div class="npcName">${n[0]}</div><div class="npcType">${n[1]}</div></div></div><div class="hearts">${"♥".repeat(Math.floor(h))}${h%1?"♡":""} <span style="color:#a9b4c5;font-size:10px">${h.toFixed(1)}/14</span></div><input class="range" type="range" min="0" max="14" step=".5" value="${h}" data-npc="${n[0]}" ${mainDoc?"":"disabled"}><div class="heartrow"><span>0 kalp</span><span>14 kalp</span></div><select class="statusselect" data-status="${n[0]}" ${mainDoc?"":"disabled"}><option value="Friendly">Arkadaş</option><option value="Dating">Sevgili</option><option value="Married">Evli</option><option value="Divorced">Boşanmış</option></select>`;$("npcGrid").append(card);let sel=card.querySelector("select");let entry=allFriendEntries().find(x=>entryName(x)===n[0]),st=text(friendValue(entry),"Status");sel.value=["Friendly","Dating","Married","Divorced"].includes(st)?st:"Friendly";card.querySelector("input").addEventListener("input",e=>{let v=+e.target.value;setFriend(n[0],v,sel.value);card.querySelector(".hearts").innerHTML=`${"♥".repeat(Math.floor(v))}${v%1?"♡":""} <span style="color:#a9b4c5;font-size:10px">${v.toFixed(1)}/14</span>`;dirty=true});sel.addEventListener("change",()=>{setFriend(n[0],+card.querySelector("input").value,sel.value);dirty=true})})}
+function renderCatalog(){let q=$("itemSearch").value.toLowerCase();$("itemGrid").innerHTML="";ITEMS.filter(i=>(i[1]+" "+i[0]).toLowerCase().includes(q)).forEach(i=>{let c=document.createElement("div");c.className="itemcard";c.innerHTML=`<div class="itemvisual"><img src="https://stardewvalleywiki.com/Special:FilePath/${encodeURIComponent((SPRITES[i[1]]||"").replaceAll(" ","_"))}.png" onerror="this.outerHTML='<span class=\'itememoji\'>${i[2]}</span>'"></div><div class="itemname">${i[1]}</div><div class="itemmeta">ID ${i[0]} · ${i[3]===-75?"Ürün":"Eşya"}</div><div class="addrow"><select class="quality"><option value="0">Normal</option><option value="1">Gümüş</option><option value="2">Altın</option><option value="4">İridyum</option></select><button>+ Ekle</button></div>`;c.querySelector("button").onclick=()=>addObject(i,c.querySelector(".quality").value);$("itemGrid").append(c)})}
+function addObject(i,quality){if(!mainDoc){alert("Önce ana kayıt dosyasını yükle.");return}let box=first(player(),"items");if(!box){alert("Envanter alanı bulunamadı.");return}let existing=inventory().find(x=>text(x,"itemId")===i[0]&&Number(text(x,"quality"))===Number(quality));if(existing){setText(existing,"stack",Math.min(999,Number(text(existing,"stack")||1)+1))}else{let x=mainDoc.createElement("Item");x.setAttributeNS("http://www.w3.org/2001/XMLSchema-instance","xsi:type","Object");let fields=[["isLostItem","false"],["category",i[3]],["hasBeenInInventory","true"],["name",i[1]],["itemId",i[0]],["specialItem","false"],["isRecipe","false"],["quality",quality],["stack","1"],["SpecialVariable","0"],["initialParentTileIndex",i[0]],["currentParentTileIndex",i[0]],["indexOfMenuItemView",i[0]],["instantUse","false"],["isEfficient","false"],["animationSpeedModifier","1"],["specialVariable","0"]];fields.forEach(([t,v])=>{let n=mainDoc.createElement(t);n.textContent=v;x.append(n)});box.append(x)}dirty=true;renderInventory();updateMetrics();alert(i[1]+" envantere eklendi.")}
+function renderInventory(){let arr=inventory();$("inventoryList").innerHTML="";if(!arr.length){$("inventoryList").innerHTML='<div class="empty">Envanter boş görünüyor.</div>';return}arr.forEach((x,idx)=>{let name=itemName(x),row=document.createElement("div");row.className="inventoryrow";row.innerHTML=`<div class="miniicon">${itemIcon(name)}</div><div><strong>${name}</strong><small>ID ${text(x,"itemId")} · Kalite ${text(x,"quality")||0} · Adet ${text(x,"stack")||1}</small></div><button>Düzenle</button>`;row.querySelector("button").onclick=()=>editItem(x);$("inventoryList").append(row)})}
+function editItem(x){let q=prompt("Kalite: 0 normal, 1 gümüş, 2 altın, 4 iridyum",text(x,"quality")||"0");if(q===null)return;if(!["0","1","2","4"].includes(q)){alert("Geçersiz kalite.");return}let s=prompt("Adet (1-999)",text(x,"stack")||"1");if(s===null)return;s=Math.max(1,Math.min(999,parseInt(s)||1));setText(x,"quality",q);setText(x,"stack",s);dirty=true;renderInventory()}
+function setPlayerFields(){if(!mainDoc)return;let p=player();setText(p,"money",Math.max(0,parseInt($("moneyInput").value)||0));if(first(p,"maxHealth"))setText(p,"maxHealth",Math.max(1,parseInt($("healthInput").value)||100));if(first(p,"maxStamina"))setText(p,"maxStamina",Math.max(0,parseInt($("staminaInput").value)||0));if(first(p,"qiGems"))setText(p,"qiGems",Math.max(0,parseInt($("qiInput").value)||0));dirty=true;updateMetrics()}
+$("mainFile").onchange=async e=>{let f=e.target.files[0];if(!f)return;mainName=f.name;originalMain=await f.text();try{mainDoc=parseXML(originalMain);if(!player())throw Error("player alanı yok");$("mainLabel").textContent=f.name;updateMetrics();renderNPC();renderInventory();$("fileStatus").textContent="Ana kayıt yüklendi. Şimdi aynı kayıt klasöründeki SaveGameInfo dosyasını seç."}catch(err){mainDoc=null;alert("Ana kayıt açılamadı: "+err.message)}};
+$("infoFile").onchange=async e=>{let f=e.target.files[0];if(!f)return;infoName=f.name;originalInfo=await f.text();try{infoDoc=parseXML(originalInfo);$("infoLabel").textContent=f.name;$("fileStatus").textContent="İki dosya yüklendi. Dışa aktarmadan önce eşleştirme ve XML doğrulaması yapılacak."}catch(err){infoDoc=null;alert("SaveGameInfo açılamadı: "+err.message)}};
+document.querySelectorAll(".tab").forEach(b=>b.onclick=()=>{document.querySelectorAll(".tab").forEach(x=>x.classList.toggle("active",x===b));document.querySelectorAll(".section").forEach(x=>x.classList.toggle("active",x.id===b.dataset.tab))});
+$("npcSearch").oninput=renderNPC;$("itemSearch").oninput=renderCatalog;
+$("validateBtn").onclick=()=>{try{if(!mainDoc||!infoDoc)throw Error("İki dosya da yüklenmeli.");if(!player()||!first(player(),"items")||!friendContainer())throw Error("Ana kayıtta gerekli alanlar eksik.");let mid=text(player(),"UniqueMultiplayerID"),iid=infoDoc.querySelector("SaveGameInfo > UniqueMultiplayerID, UniqueMultiplayerID");if(mid&&iid&&mid!==iid.textContent)throw Error("Kayıt kimlikleri eşleşmiyor.");$("fileStatus").textContent="Kontrol başarılı: ana kayıt ve SaveGameInfo okunuyor; kayıt kimliği uyumlu."}catch(e){$("fileStatus").textContent="Kontrol başarısız: "+e.message;alert(e.message)}};
+$("exportBtn").onclick=()=>{
+try{
+ if(!mainDoc||!infoDoc)throw Error("Önce ana kayıt ve SaveGameInfo dosyalarının ikisini de yükle.");
+ setPlayerFields();
+ const money=text(player(),"money");
+ const infoMoney=infoDoc.querySelector("SaveGameInfo > money, money");
+ if(infoMoney)infoMoney.textContent=money;
+ const playerId=text(player(),"UniqueMultiplayerID");
+ const infoId=infoDoc.querySelector("SaveGameInfo > UniqueMultiplayerID, UniqueMultiplayerID");
+ if(playerId&&infoId&&playerId!==infoId.textContent)throw Error("Kayıt kimliği uyuşmuyor; dışa aktarma durduruldu.");
+ const mainOut='<?xml version="1.0" encoding="utf-8"?>\n'+new XMLSerializer().serializeToString(mainDoc.documentElement);
+ const infoOut='<?xml version="1.0" encoding="utf-8"?>\n'+new XMLSerializer().serializeToString(infoDoc.documentElement);
+ parseXML(mainOut);parseXML(infoOut);
+ const blob=makeZip([
+  {name:"Yalın_453502399/Yalın_453502399",content:mainOut},
+  {name:"Yalın_453502399/SaveGameInfo",content:infoOut}
+ ]);
+ const url=URL.createObjectURL(blob),a=document.createElement("a");
+ a.href=url;a.download="iModStudio_Stardew_Save.zip";a.textContent="ZIP dosyasını indir";
+ a.style.cssText="display:block;padding:14px;background:#d7b36f;color:#202b3c;border-radius:12px;text-align:center;font-weight:800;margin-top:10px";
+ const old=document.getElementById("downloadReady");if(old)old.remove();
+ a.id="downloadReady";$("fileStatus").appendChild(a);
+ $("fileStatus").firstChild.textContent="Paket hazırlandı. İki XML doğrulandı ve Gold değerleri eşitlendi. Aşağıdaki indirme bağlantısına dokun.";
+ a.click();
+ setTimeout(()=>URL.revokeObjectURL(url),120000);
+}catch(e){alert("Dışa aktarma durduruldu: "+e.message)}
+};
+$("resetBtn").onclick=()=>{if(!confirm("Yüklediğin ilk dosyalara dönmek istiyor musun?"))return;if(originalMain)mainDoc=parseXML(originalMain);if(originalInfo)infoDoc=parseXML(originalInfo);dirty=false;if(mainDoc){updateMetrics();renderNPC();renderInventory()}};
+renderNPC();renderCatalog();
+</script></body></html>
